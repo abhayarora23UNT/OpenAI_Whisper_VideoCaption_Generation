@@ -10,6 +10,9 @@ from datetime import timedelta
 import os
 import moviepy.editor as mpy
 
+from generatecaptions import GenerateCaptions
+from video2audio import VideoConverter
+
 
 @app.route('/')
 def upload_form():
@@ -32,8 +35,23 @@ def upload():
         return 'No video selected'
     if video and allowed_file(video.filename):
         video.save('static/videos/' + video.filename)
-        return render_template('preview.html', video_name=video.filename)
+        return doProcessing(video.filename)
     return 'Invalid video file'
+
+
+def doProcessing(fileName):
+    converter=VideoConverter()
+    print("debug: File name is ",fileName)
+    audioPath=converter.convertVideo2Audio(fileName)
+    print("debug: audio path  is ",audioPath)
+    return generateCaptions(fileName,audioPath)
+
+
+def generateCaptions(videoFileName,audioPath):
+    captionGen=GenerateCaptions()
+    captionFilePath=captionGen.generateCaptions(audioPath)
+    print("debug: caption path  is ",captionFilePath)
+    return render_template('preview.html', video_name=videoFileName,captionFile=captionFilePath)
 
 
 @app.errorhandler(413)

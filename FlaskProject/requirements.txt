@@ -1,0 +1,4 @@
+moviepy==1.0.3
+pytube==12.1.0
+Flask==2.2.2
+git+https://github.com/openai/whisper.git 
