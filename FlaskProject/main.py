@@ -42,7 +42,10 @@ def upload():
 def doProcessing(fileName):
     converter=VideoConverter()
     print("debug: File name is ",fileName)
+    # youTube= "https://www.youtube.com/watch?v=dd1kN_myNDs"
     audioPath=converter.convertVideo2Audio(fileName)
+    # videoPath= converter.downloadYTubeVideo(youTube);
+    # audioPath = converter.convertVideo2Audio(videoPath)
     print("debug: audio path  is ",audioPath)
     return generateCaptions(fileName,audioPath)
 

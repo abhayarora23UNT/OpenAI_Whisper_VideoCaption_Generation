@@ -8,5 +8,13 @@
         <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
         <track src="{{url_for('static', filename=captionFile)}}" label="English" kind="captions" srclang="en-us" default >
     </video>
+<br>
+<br>
+<br>
+<p>
+
+		  <li>{{ captionFile }}</li>
+    <li>{{ video_name }}</li>
+</p>
 </body>
 </html>
