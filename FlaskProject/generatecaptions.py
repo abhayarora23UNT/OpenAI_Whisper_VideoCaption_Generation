@@ -2,6 +2,8 @@ import whisper
 from datetime import timedelta
 import os
 
+from utils import *
+
 
 model=''
 
@@ -24,22 +26,39 @@ class GenerateCaptions:
             with open(downloadPath, "w+") as f:
                 f.write(result["text"])
 
-            segments = result['segments']
-            captionFilePath=self.generateSrtFile(segments,captionFileName)
+            # captionFilePath=self.generateSrtFile(segments,captionFileName)
+            self.generateVttOutput(result,captionFileName)
+            captionFilePath=self.generateSrtOutput(result,captionFileName)
             return captionFilePath
 
-    def generateSrtFile(self,segments,fileName):
-        for segment in segments:
-            startTime = str(0)+str(timedelta(seconds=int(segment['start'])))+',000'
-            endTime = str(0)+str(timedelta(seconds=int(segment['end'])))+',000'
-            text = segment['text']
-            segmentId = segment['id']+1
-            segment = f"{segmentId}\n{startTime} --> {endTime}\n{text[1:] if text[0] is ' ' else text}\n\n"
+    def generateSrtOutput(self,result,audio):
+        srt_writer = get_writer("srt", "static/videos/")
+        srt_writer(result, audio)
+        return audio+".srt"
 
-            srtFilename = os.path.join("static/captions/", f""+fileName+".srt")
+    def generateVttOutput(self,result,audio):
+        vtt_writer = get_writer("vtt", "static/videos/")
+        vtt_writer(result, audio)
+        return audio+".vtt"
 
-            with open(srtFilename, 'a', encoding='utf-8') as srtFile:
-                srtFile.write(segment)
+    
+    ##  *********** Method not using ********
+    # def generateSrtFile(self,segments,fileName):
+    #     for segment in segments:
+    #         startTime = str(0)+str(timedelta(seconds=int(segment['start'])))+',000'
+    #         endTime = str(0)+str(timedelta(seconds=int(segment['end'])))+',000'
+    #         text = segment['text']
+    #         segmentId = segment['id']+1
+    #         segment = f"{segmentId}\n{startTime} --> {endTime}\n{text[1:] if text[0] is ' ' else text}\n\n"
 
-            print("debug: ",srtFilename)
-            return srtFilename
+    #         srtFilename = os.path.join("static/videos/", f""+fileName+".vtt")
+
+    #         with open(srtFilename, 'a', encoding='utf-8') as srtFile:
+    #             srtFile.write(segment)
+
+    #         print("debug: ",srtFilename)
+    #         return srtFilename
+        
+
+ 
+
