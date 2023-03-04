@@ -27,8 +27,8 @@ class GenerateCaptions:
                 f.write(result["text"])
 
             # captionFilePath=self.generateSrtFile(segments,captionFileName)
-            self.generateVttOutput(result,captionFileName)
-            captionFilePath=self.generateSrtOutput(result,captionFileName)
+            captionFilePath=self.generateVttOutput(result,captionFileName)
+            self.generateSrtOutput(result,captionFileName)
             return captionFilePath
 
     def generateSrtOutput(self,result,audio):
