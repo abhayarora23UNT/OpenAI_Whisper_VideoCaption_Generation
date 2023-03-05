@@ -3,46 +3,59 @@
 <head>
     <title>Preview Video</title>
     <script src="{{url_for('static', filename='load.js')}}"></script>
-    <link rel="stylesheet" href="https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video-js.css" />
+    <link rel="stylesheet" href="https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video-js.css"/>
+
+    <style type="text/css">
+  .video-js .vjs-time-control{
+    display: block;
+  }
+  .video-js .vjs-remaining-time{
+    display: none;
+  }
+
+    </style>
 </head>
 
 
 <body onload="loadTrack()">
 
-    <div class='container' style="max-width: 550px !important;">
-        <video  id="content_video"   crossorigin="anonymous" class="video-js vjs-default-skin vjs-16-9" controls preload="auto" width="640" height="360">
-        
-          <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-          <track label="English" kind="subtitles" srclang="en" src="https://kot-politiken.s3-eu-west-1.amazonaws.com/2019/114_en.vtt.txt" default />
-        -->
-          <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
-          <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions" srclang="en-us" default >
-          <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles" srclang="en-us" default >
-  <!-- 
-          <source src="/static/videos/GoTrascript_captions_samples.mp4" type="video/mp4">
-          <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default > -->
-            
-        </video>
-      </div>
+<div class='container' style="max-width: 550px !important;">
+    <video id="content_video" crossorigin="anonymous" class="video-js vjs-default-skin vjs-16-9" controls preload="auto"
+           width="640" height="360">
 
-     <!-- 
-    <video width="400" height="400" controls  crossorigin="anonymous" preload="metadata">
+        <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+        <track label="English" kind="subtitles" srclang="en" src="https://kot-politiken.s3-eu-west-1.amazonaws.com/2019/114_en.vtt.txt" default />
+      -->
         <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
-        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions" srclang="en-us" default >
-        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles" srclang="en-us" default >
-     
-        <source src="/static/videos/GoTrascript_captions_samples.mp4" type="video/mp4">
-        <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default > 
+        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions"
+               srclang="en-us" default>
+        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles"
+               srclang="en-us" default>
+        <!--
+                <source src="/static/videos/GoTrascript_captions_samples.mp4" type="video/mp4">
+                <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default > -->
+
     </video>
-    --> 
+</div>
+
+<!--
+<video width="400" height="400" controls  crossorigin="anonymous" preload="metadata">
+   <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
+   <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions" srclang="en-us" default >
+   <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles" srclang="en-us" default >
+
+   <source src="/static/videos/GoTrascript_captions_samples.mp4" type="video/mp4">
+   <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default >
+</video>
+-->
 <br>
 <br>
 <br>
 <p>
 
-	<li>{{ captionFile }}</li>
-    <li>{{ video_name }}</li>
+<li>{{ captionFile }}</li>
+<li>{{ video_name }}</li>
 </p>
 </body>
- <script src='https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video.js'></script>
+<script src='https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video.js'></script>
 </html>
