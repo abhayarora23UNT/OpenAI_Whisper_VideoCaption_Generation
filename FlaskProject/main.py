@@ -39,13 +39,22 @@ def upload():
     return 'Invalid video file'
 
 
+@app.route('/uploadYTube', methods=["POST"])
+def uploadYTube():
+    videoUrl=request.form["url"]
+    converter=VideoConverter()
+    print("debug: File name is ",videoUrl)
+    videoPath= converter.downloadYTubeVideo(videoUrl)
+    print("debug: video path  is ",videoPath)
+    audioPath = converter.convertVideo2Audio(videoPath)
+    print("debug: audio path  is ",audioPath)
+    return generateCaptions(videoPath,audioPath)
+        
+
 def doProcessing(fileName):
     converter=VideoConverter()
     print("debug: File name is ",fileName)
-    # youTube= "https://www.youtube.com/watch?v=dd1kN_myNDs"
     audioPath=converter.convertVideo2Audio(fileName)
-    # videoPath= converter.downloadYTubeVideo(youTube);
-    # audioPath = converter.convertVideo2Audio(videoPath)
     print("debug: audio path  is ",audioPath)
     return generateCaptions(fileName,audioPath)
 

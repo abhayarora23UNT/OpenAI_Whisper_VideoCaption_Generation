@@ -8,5 +8,11 @@
         <input type="file" name="video">
         <input type="submit" value="Upload">
     </form>
+    
+    <br><br>
+    <form action="{{url_for('uploadYTube')}}" method="post" >
+        <input type="text" name="url" placeholder="Enter youtube video url" style="width:400px"><br><br>
+        <input type="submit" value="Upload">
+    </form>
 </body>
 </html>
