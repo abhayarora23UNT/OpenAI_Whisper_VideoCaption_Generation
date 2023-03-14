@@ -1,18 +1,54 @@
 <!doctype html>
 <html>
+
 <head>
     <title>Upload Video</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-        <input type="file" name="video">
-        <input type="submit" value="Upload">
-    </form>
-    
-    <br><br>
-    <form action="{{url_for('uploadYTube')}}" method="post" >
-        <input type="text" name="url" placeholder="Enter youtube video url" style="width:400px"><br><br>
-        <input type="submit" value="Upload">
-    </form>
+
+    <!--- Header -->
+    <header>
+        <h3 class="headerBackground text-white p-2">
+            <img class="logo-style" src="./static/styles/logo.png">
+            Video Caption Customization and Detection
+        </h3>
+    </header>
+
+    <!----- TODO  Add code for tablyout inside main container below-->
+    <main>
+        <br>
+        <br>
+        <br>
+        <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
+            <input type="file" name="video">
+            <input type="submit" value="Upload">
+        </form>
+
+        <br><br>
+        <form action="{{url_for('uploadYTube')}}" method="post">
+            <input type="text" name="url" placeholder="Enter youtube video url" style="width:400px"><br><br>
+            <input type="submit" value="Upload">
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 </body>
+
+<!--- Footer -->
+<footer id="footer">
+    <span class="footerStyle">
+        © 2022 All Rights Reserved: UNT, Software Testing Spring-23, Team 11
+    </span>
+</footer>
+
 </html>

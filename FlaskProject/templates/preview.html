@@ -1,44 +1,61 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>Preview Video</title>
-    <script src="{{url_for('static', filename='load.js')}}"></script>
-    <link rel="stylesheet" href="https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video-js.css"/>
+  <title>Preview Video</title>
+  <script src="{{url_for('static', filename='load.js')}}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video-js.css" />
 
-    <style type="text/css">
-  .video-js .vjs-time-control{
-    display: block;
-  }
-  .video-js .vjs-remaining-time{
-    display: none;
-  }
+  <style type="text/css">
+    .video-js .vjs-time-control {
+      display: block;
+    }
 
-    </style>
+    .video-js .vjs-remaining-time {
+      display: none;
+    }
+  </style>
 </head>
 
 
 <body onload="loadTrack()">
 
-<div class='container' style="max-width: 550px !important;">
-    <video id="content_video" crossorigin="anonymous" class="video-js vjs-default-skin vjs-16-9" controls preload="auto"
-           width="640" height="360">
+  <!--- Header -->
+  <header>
+    <h3 class="headerBackground text-white p-2">
+      <img class="logo-style" src="./static/styles/logo.png">
+      Video Caption Customization and Detection
+    </h3>
+  </header>
+
+  <main>
+    <br>
+    <br>
+    <br>
+    <div class='container' style="max-width: 550px !important;">
+      <video id="content_video" crossorigin="anonymous" class="video-js vjs-default-skin vjs-16-9" controls
+        preload="auto" width="640" height="360">
 
         <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
         <track label="English" kind="subtitles" srclang="en" src="https://kot-politiken.s3-eu-west-1.amazonaws.com/2019/114_en.vtt.txt" default />
       -->
         <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
         <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions"
-               srclang="en-us">
-<!--        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles"-->
-<!--               srclang="en-us">-->
+          srclang="en-us">
+        <!--        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles"-->
+        <!--               srclang="en-us">-->
         <!--
                 <source src="/static/videos/GoTrascript_captions_samples.mp4" type="video/mp4">
                 <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default > -->
 
-    </video>
-</div>
+      </video>
+    </div>
 
-<!--
+    <!--
 <video width="400" height="400" controls  crossorigin="anonymous" preload="metadata">
    <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
    <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions" srclang="en-us" default >
@@ -48,14 +65,30 @@
    <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default >
 </video>
 -->
-<br>
-<br>
-<br>
-<p>
+    <br>
+    <br>
+    <br>
+    <p>
 
-<li>{{ captionFile }}</li>
-<li>{{ video_name }}</li>
-</p>
+      <li>{{ captionFile }}</li>
+      <li>{{ video_name }}</li>
+    </p>
+
+  </main>
+
 </body>
 <script src='https://demo.screen9.com:8081/demos/grbla/hlsvtt/6207/video.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+  integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+
+<!--- Footer -->
+<footer id="footer">
+  <span class="footerStyle">
+    © 2022 All Rights Reserved: UNT, Software Testing Spring-23, Team 11
+  </span>
+</footer>
+
 </html>
