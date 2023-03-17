@@ -1,0 +1,12 @@
+1
+00:00:00,000 --> 00:00:04,000
+Hello, welcome to Software Testing Project.
+
+2
+00:00:04,000 --> 00:00:08,000
+Today we are going to develop a new plugin,
+
+3
+00:00:08,000 --> 00:00:22,000
+which is known as MovieBray. Thank you.
+
