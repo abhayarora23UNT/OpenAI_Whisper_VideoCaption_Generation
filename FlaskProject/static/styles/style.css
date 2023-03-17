@@ -70,3 +70,27 @@
  .ml-15{
      margin-left:15%
  }
+
+ .action-btn-style{
+    background: #006A31;
+    color: white;
+    font-weight: 500;
+    height: 40px;
+    width: 170px;
+    border: 1px #006A31;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.media-box {
+    margin: 30px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+    border-color: #006A31;
+    overflow: hidden;
+    border-radius: 15px;
+    border-style: solid;
+  }
