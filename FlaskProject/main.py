@@ -13,6 +13,8 @@ import moviepy.editor as mpy
 from generatecaptions import GenerateCaptions
 from video2audio import VideoConverter
 
+from utils import *
+
 
 @app.route('/')
 def upload_form():
@@ -28,6 +30,7 @@ def allowed_file(filename):
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    clearDirectoryBeforeUpload()
     if 'video' not in request.files:
         return 'No video file found'
     video = request.files['video']
@@ -41,6 +44,7 @@ def upload():
 
 @app.route('/uploadYTube', methods=["POST"])
 def uploadYTube():
+    clearDirectoryBeforeUpload()
     videoUrl=request.form["url"]
     converter=VideoConverter()
     print("debug: File name is ",videoUrl)
@@ -65,6 +69,10 @@ def generateCaptions(videoFileName,audioPath):
     print("debug: caption path  is ",captionFilePath)
     return render_template('preview.html', video_name=videoFileName,captionFile=captionFilePath)
 
+@app.route('/index', methods=["POST"])
+def navigateToMain():
+     print("inside back")
+     return render_template('index.html', reload="true")
 
 @app.errorhandler(413)
 def request_entity_too_large(error):

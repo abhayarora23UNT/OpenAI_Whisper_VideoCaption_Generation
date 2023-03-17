@@ -3,6 +3,7 @@ import os
 import sys
 import zlib
 from typing import Callable, TextIO
+import os, shutil
 
 system_encoding = sys.getdefaultencoding()
 
@@ -160,3 +161,41 @@ def get_writer(output_format: str, output_dir: str) -> Callable[[dict, TextIO], 
         return write_all
 
     return writers[output_format](output_dir)
+
+
+def clearDirectoryBeforeUpload():
+    clearAudioDirFiles()
+    clearVideoDirFiles()
+    clearCaptionDirFiles()
+
+def clearAudioDirFiles():
+    dir = 'static/audios/'
+    for files in os.listdir(dir):
+        path = os.path.join(dir, files)
+        try:
+            shutil.rmtree(path)
+        except OSError as error:
+            print("debug:ClearAudioDirectory ",error)
+            os.remove(path)
+
+
+def clearVideoDirFiles():
+    dir = 'static/videos/'
+    for files in os.listdir(dir):
+        path = os.path.join(dir, files)
+        try:
+            shutil.rmtree(path)
+        except OSError as error:
+            print("debug:ClearVideoDirectory ",error)
+            os.remove(path)
+
+
+def clearCaptionDirFiles():
+    dir = 'static/captions/'
+    for files in os.listdir(dir):
+        path = os.path.join(dir, files)
+        try:
+            shutil.rmtree(path)
+        except OSError as error:
+            print("debug:ClearCaptionDirectory ",error)
+            os.remove(path)
