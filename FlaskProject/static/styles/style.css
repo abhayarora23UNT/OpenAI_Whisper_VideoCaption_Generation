@@ -94,3 +94,20 @@
     border-radius: 15px;
     border-style: solid;
   }
+
+
+  /* Below is the CSS for Loader Indicator*/
+
+  #loader {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .style-loader{
+    width: 200px;
+    height: 200px;
+  }

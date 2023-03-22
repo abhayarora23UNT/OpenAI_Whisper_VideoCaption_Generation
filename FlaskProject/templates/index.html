@@ -2,141 +2,150 @@
 <html>
 
 <head>
-    <title>Upload Video</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Upload Video</title>
+  <script src="{{url_for('static', filename='load.js')}}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-body {font-family: Arial;}
+  <style>
+    body {
+      font-family: Arial;
+    }
 
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #555;
-}
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #555;
+    }
 
-/* Style the buttons inside the tab */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
 
-.marginStyle{
-margin:50px 350px 20px 350px;
-}
+    .marginStyle {
+      margin: 50px 350px 20px 350px;
+    }
 
-.width{
-width:50%;
-}
+    .width {
+      width: 50%;
+    }
 
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color:  #777;
-}
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #777;
+    }
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-<!--  padding: 6px 12px;-->
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      /* <!--  padding: 6px 12px;-->
 <!--  border: 1px solid #ccc;-->
-<!--  border-top: none;-->
-}
+<!--  border-top: none;--> */
+    }
 
-/* Style the close button */
-.topright {
-  float: right;
-  cursor: pointer;
-  font-size: 28px;
-}
+    /* Style the close button */
+    .topright {
+      float: right;
+      cursor: pointer;
+      font-size: 28px;
+    }
 
-.topright:hover {color: red;}
-</style>
+    .topright:hover {
+      color: red;
+    }
+  </style>
 </head>
 
-<body>
+<body onload="showPageTransition()">
 
 
 
-    <!--- Header -->
-    <header>
-        <h3 class="headerBackground text-white p-2">
-            <img class="logo-style" src="./static/styles/logo.png">
-            Video Caption Customization and Detection
-        </h3>
-    </header>
+  <!--- Header -->
+  <header>
+    <h3 class="headerBackground text-white p-2">
+      <img class="logo-style" src="./static/styles/logo.png">
+      Video Caption Customization and Detection
+    </h3>
+  </header>
 
-    <!----- TODO  Add code for tablyout inside main container below-->
-    <main class="marginStyle">
-        <br>
-        <div class="tab" >
-  <button class="tablinks width" onclick="openTab(event, 'CustomVideo')">Custom Video</button>
-  <button class="tablinks width" onclick="openTab(event, 'Youtube')">Youtube</button>
-</div>
-        <br>
-        <br>
-        <div id="CustomVideo"  class="tabcontent" >
-        <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-            <input type="file" name="video">
-            <input type="submit" value="Upload">
-        </form>
-            </div>
+  <!----- TODO  Add code for tablyout inside main container below-->
+  <main class="marginStyle">
+    <br>
+    <div class="tab">
+      <button class="tablinks width" onclick="openTab(event, 'CustomVideo')">Custom Video</button>
+      <button class="tablinks width" onclick="openTab(event, 'Youtube')">Youtube</button>
+    </div>
+    <br>
+    <br>
+    <div id="CustomVideo" class="tabcontent">
+      <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="video">
+        <input type="submit" onclick="showPageTransition()" value="Upload">
+      </form>
+    </div>
 
-        <br><br>
-        <div id="Youtube"  class="tabcontent" >
-        <form action="{{url_for('uploadYTube')}}" method="post">
-            <input type="text" name="url" placeholder="Enter youtube video url" style="width:400px"><br><br>
-            <input type="submit" value="Upload">
-        </form>
-        </div>
-    </main>
+    <br><br>
+    <div id="Youtube" class="tabcontent">
+      <form action="{{url_for('uploadYTube')}}" method="post">
+        <input type="text" name="url" placeholder="Enter youtube video url" style="width:400px"><br><br>
+        <input type="submit" value="Upload">
+      </form>
+    </div>
+  </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script>
 
-<script>
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+  <script>
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+  </script>
 </body>
 
 <!--- Footer -->
 <footer id="footer">
-    <span class="footerStyle">
-        © 2022 All Rights Reserved: UNT, Software Testing Spring-23, Team 11
-    </span>
+  <span class="footerStyle">
+    © 2023 All Rights Reserved: UNT, Software Testing Spring-23, Team 11
+  </span>
 </footer>
+
+<div id="loader">
+  <img class="style-loader" src="{{ url_for('static', filename='styles/loader.gif') }}">
+</div>
 
 </html>

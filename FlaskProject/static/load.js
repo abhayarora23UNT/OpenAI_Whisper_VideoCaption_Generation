@@ -15,4 +15,21 @@ function loadTrack(){
     });
 }
 
+function showLoader(){
+    console.log("inside showLoader")
+    document.getElementById("loader").style.display = "block";
+}
 
+function hideLoader(){
+    console.log("hide showLoader")
+    document.getElementById("loader").style.display = "none";
+}
+
+
+function showPageTransition(){
+    showLoader()
+
+    setTimeout(() => {
+        hideLoader()
+    }, 3000);
+}
