@@ -4,73 +4,12 @@
 <head>
   <title>Upload Video</title>
   <script src="{{url_for('static', filename='load.js')}}"></script>
+  <script src="{{url_for('static', filename='home.js')}}"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <style>
-    body {
-      font-family: Arial;
-    }
-
-    /* Style the tab */
-    .tab {
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #555;
-    }
-
-    /* Style the buttons inside the tab */
-    .tab button {
-      background-color: inherit;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-      font-size: 17px;
-    }
-
-    .marginStyle {
-      margin: 50px 350px 20px 350px;
-    }
-
-    .width {
-      width: 50%;
-    }
-
-
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-      background-color: #ddd;
-    }
-
-    /* Create an active/current tablink class */
-    .tab button.active {
-      background-color: #777;
-    }
-
-    /* Style the tab content */
-    .tabcontent {
-      display: none;
-      /* <!--  padding: 6px 12px;-->
-<!--  border: 1px solid #ccc;-->
-<!--  border-top: none;--> */
-    }
-
-    /* Style the close button */
-    .topright {
-      float: right;
-      cursor: pointer;
-      font-size: 28px;
-    }
-
-    .topright:hover {
-      color: red;
-    }
-  </style>
 </head>
 
 <body onload="showPageTransition()">
@@ -82,7 +21,7 @@
     </h3>
   </header>
 
-  <!----- TODO  Add code for tablyout inside main container below-->
+ 
   <main class="container">
     <div class="tabs text-white">
       <button class="btn btn1 active text-white" id="1">Custom Video</button>
@@ -90,20 +29,21 @@
     </div>
 
     <div class="sections text-white">
-    <div id="CustomVideo" class="content content1 active">
-      <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-        <input type="file" id="videoInput" name="video" onChange="checkFileInput('videoInput','submitVideoUpload')">
-        <input type="submit" id="submitVideoUpload" onclick="showPageTransition()" value="Upload" disabled>
-      </form>
-    </div>
-
-    <div id="Youtube" class="content content2">
-      <form action="{{url_for('uploadYTube')}}" method="post">
-        <input type="text" name="url" id="urlUpload" placeholder="Enter youtube video url" style="width:400px" onChange="checkFileInput('urlUpload', 'youTubeUpload')"><br><br>
-        <input type="submit" id="youTubeUpload" value="Upload" disabled>
-      </form>
-    </div>
+      <div id="CustomVideo" class="content content1 active">
+        <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
+          <input type="file" id="videoInput" name="video" onChange="checkFileInput('videoInput','submitVideoUpload')">
+          <input type="submit" id="submitVideoUpload" onclick="showPageTransition()" value="Upload" disabled>
+        </form>
       </div>
+
+      <div id="Youtube" class="content content2">
+        <form action="{{url_for('uploadYTube')}}" method="post">
+          <input type="text" name="url" id="urlUpload" placeholder="Enter youtube video url" style="width:400px"
+            onChange="checkFileInput('urlUpload', 'youTubeUpload')"><br><br>
+          <input type="submit" id="youTubeUpload" value="Upload" disabled>
+        </form>
+      </div>
+    </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -113,53 +53,6 @@
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
     crossorigin="anonymous"></script>
 
-  <script>
-  const checkFileInput = (x,y) => {
-  const fileInput = document.getElementById(x);
-  const submitButton = document.getElementById(y);
-  if (fileInput.value) {
-    submitButton.disabled = false;
-  } else {
-    submitButton.disabled = true;
-  }
-  if(x == "videoInput"){
-  const video = document.createElement('video');
-  video.preload = 'metadata';
-  video.onloadedmetadata = function() {
-    window.URL.revokeObjectURL(video.src);
-    if (video.duration <= 30) {
-      submitButton.disabled = false;
-    } else {
-      alert('Video duration should not be more than 30 seconds!');
-      submitButton.disabled = true;
-      fileInput.value = null;
-    }
-  }
-  video.src = URL.createObjectURL(fileInput.files[0]);
-  }
-};
-
-
-
-    const buttons = document.querySelectorAll("button");
-const sections = document.querySelectorAll(".content");
-
-
-buttons.forEach((btn)=>{
-  btn.addEventListener("click", ()=>{
-    buttons.forEach((btn)=>{
-      btn.classList.remove("active");
-    });
-    btn.classList.add("active");
-    const id = btn.id;
-    sections.forEach((section)=>{
-      section.classList.remove("active");
-    });
-    const req = document.getElementsByClassName(`content${id}`);
-    req[0].classList.add("active");
-  })
-})
-  </script>
 </body>
 
 <!--- Footer -->
