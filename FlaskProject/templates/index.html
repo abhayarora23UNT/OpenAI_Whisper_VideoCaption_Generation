@@ -73,7 +73,7 @@
   </style>
 </head>
 
-<body onload="showPageTransition()">
+<body>
 
 
 
@@ -86,28 +86,27 @@
   </header>
 
   <!----- TODO  Add code for tablyout inside main container below-->
-  <main class="marginStyle">
-    <br>
-    <div class="tab">
-      <button class="tablinks width" onclick="openTab(event, 'CustomVideo')">Custom Video</button>
-      <button class="tablinks width" onclick="openTab(event, 'Youtube')">Youtube</button>
+  <main class="container">
+    <div class="tabs text-white">
+      <button class="btn btn1 active text-white" id="1">Custom Video</button>
+      <button class="btn btn2 text-white" id="2">Youtube</button>
     </div>
-    <br>
-    <br>
-    <div id="CustomVideo" class="tabcontent">
+
+    <div class="sections text-white">
+    <div id="CustomVideo" class="content content1 active">
       <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
         <input type="file" name="video">
         <input type="submit" onclick="showPageTransition()" value="Upload">
       </form>
     </div>
 
-    <br><br>
-    <div id="Youtube" class="tabcontent">
+    <div id="Youtube" class="content content2">
       <form action="{{url_for('uploadYTube')}}" method="post">
         <input type="text" name="url" placeholder="Enter youtube video url" style="width:400px"><br><br>
         <input type="submit" value="Upload">
       </form>
     </div>
+      </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -118,22 +117,24 @@
     crossorigin="anonymous"></script>
 
   <script>
-    function openTab(evt, tabName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(tabName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
+    const buttons = document.querySelectorAll("button");
+const sections = document.querySelectorAll(".content");
 
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+
+buttons.forEach((btn)=>{
+  btn.addEventListener("click", ()=>{
+    buttons.forEach((btn)=>{
+      btn.classList.remove("active");
+    });
+    btn.classList.add("active");
+    const id = btn.id;
+    sections.forEach((section)=>{
+      section.classList.remove("active");
+    });
+    const req = document.getElementsByClassName(`content${id}`);
+    req[0].classList.add("active");
+  })
+})
   </script>
 </body>
 
