@@ -21,7 +21,7 @@
     </h3>
   </header>
 
- 
+
   <main class="container">
     <div class="tabs text-white">
       <button class="btn btn1 active text-white" id="1">Custom Video</button>
@@ -31,16 +31,17 @@
     <div class="sections text-white">
       <div id="CustomVideo" class="content content1 active">
         <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-          <input type="file" id="videoInput" name="video" onChange="checkFileInput('videoInput','submitVideoUpload')">
-          <input type="submit" id="submitVideoUpload" onclick="showPageTransition()" value="Upload" disabled>
+          <input type="file" class="form-input-video" id="videoInput" name="video">
+          <input type="submit" class="form-button-upload" id="submitVideoUpload" onclick="showPageTransition()"
+            value="Upload" title="Upload Video">
         </form>
       </div>
 
       <div id="Youtube" class="content content2">
         <form action="{{url_for('uploadYTube')}}" method="post">
           <input type="text" name="url" id="urlUpload" placeholder="Enter youtube video url" style="width:400px"
-            onChange="checkFileInput('urlUpload', 'youTubeUpload')"><br><br>
-          <input type="submit" id="youTubeUpload" value="Upload" disabled>
+            class="form-input-youtube"><br><br>
+          <input type="submit" id="youTubeUpload" value="Upload" class="form-button-youtube" title="Upload Video">
         </form>
       </div>
     </div>

@@ -36,7 +36,7 @@
     <br>
     <br>
     <br>
-    <div class='container' style="max-width: 550px !important;">
+    <div class='video-container' style="max-width: 550px !important;">
       <video id="content_video" crossorigin="anonymous" class="video-js vjs-default-skin vjs-16-9" controls
         preload="auto" width="640" height="360">
 
@@ -68,14 +68,14 @@
     <br>
     <br>
     <br>
-    <p>
+    <!-- <p>
 
       <li>{{ captionFile }}</li>
       <li>{{ video_name }}</li>
-    </p>
+    </p> -->
 
 
-    <form class="align-center" action="{{url_for('navigateToMain')}}" method="post">
+    <form class="align-center new-video-btn-style" action="{{url_for('navigateToMain')}}" method="post">
       <input type="submit" class="action-btn-style" value="Try with New Video" title="Try with new video">
     </form>
   </main>
