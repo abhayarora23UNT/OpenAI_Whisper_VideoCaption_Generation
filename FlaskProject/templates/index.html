@@ -73,10 +73,7 @@
   </style>
 </head>
 
-<body>
-
-
-
+<body onload="showPageTransition()">
   <!--- Header -->
   <header>
     <h3 class="headerBackground text-white p-2">
@@ -95,15 +92,15 @@
     <div class="sections text-white">
     <div id="CustomVideo" class="content content1 active">
       <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-        <input type="file" name="video">
-        <input type="submit" onclick="showPageTransition()" value="Upload">
+        <input type="file" id="videoInput" name="video" onChange="checkFileInput('videoInput','submitVideoUpload')">
+        <input type="submit" id="submitVideoUpload" onclick="showPageTransition()" value="Upload" disabled>
       </form>
     </div>
 
     <div id="Youtube" class="content content2">
       <form action="{{url_for('uploadYTube')}}" method="post">
-        <input type="text" name="url" placeholder="Enter youtube video url" style="width:400px"><br><br>
-        <input type="submit" value="Upload">
+        <input type="text" name="url" id="urlUpload" placeholder="Enter youtube video url" style="width:400px" onChange="checkFileInput('urlUpload', 'youTubeUpload')"><br><br>
+        <input type="submit" id="youTubeUpload" value="Upload" disabled>
       </form>
     </div>
       </div>
@@ -117,6 +114,33 @@
     crossorigin="anonymous"></script>
 
   <script>
+  const checkFileInput = (x,y) => {
+  const fileInput = document.getElementById(x);
+  const submitButton = document.getElementById(y);
+  if (fileInput.value) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+  if(x == "videoInput"){
+  const video = document.createElement('video');
+  video.preload = 'metadata';
+  video.onloadedmetadata = function() {
+    window.URL.revokeObjectURL(video.src);
+    if (video.duration <= 30) {
+      submitButton.disabled = false;
+    } else {
+      alert('Video duration should not be more than 30 seconds!');
+      submitButton.disabled = true;
+      fileInput.value = null;
+    }
+  }
+  video.src = URL.createObjectURL(fileInput.files[0]);
+  }
+};
+
+
+
     const buttons = document.querySelectorAll("button");
 const sections = document.querySelectorAll(".content");
 
