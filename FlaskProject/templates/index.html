@@ -28,11 +28,11 @@
       <button class="btn btn2 text-white" id="2">Youtube</button>
     </div>
 
-    <div class="sections text-white">
+    <div class="sections">
       <div id="CustomVideo" class="content content1 active">
         <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-          <input type="file" class="form-input-video" id="videoInput" name="video">
-          <input type="submit" class="form-button-upload" id="submitVideoUpload" onclick="showPageTransition()"
+          <input type="file" class="form-input-video" id="videoInput" name="video" accept="video/mp4"><br><br>
+          <input type="submit" class="form-button-upload button4" id="submitVideoUpload" onclick="showPageTransition()"
             value="Upload" title="Upload Video">
         </form>
       </div>
