@@ -3,8 +3,8 @@
 
 <head>
   <title>Preview Video</title>
+  <script src="{{url_for('static', filename='constant.js')}}"></script>
   <script src="{{url_for('static', filename='load.js')}}"></script>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,52 +32,28 @@
     </h3>
   </header>
 
-  <main>
-    <br>
-    <br>
-    <br>
-    <div class='video-container' style="max-width: 550px !important;">
-      <video id="content_video" crossorigin="anonymous" class="video-js vjs-default-skin vjs-16-9" controls
-        preload="auto" width="640" height="360">
+  <main class="align-vert">
 
-        <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-        <track label="English" kind="subtitles" srclang="en" src="https://kot-politiken.s3-eu-west-1.amazonaws.com/2019/114_en.vtt.txt" default />
-      -->
+    <div class='video-container'>
+      <video id="content_video" crossorigin="anonymous" class="video-js vjs-default-skin vjs-16-9" controls
+        preload="auto" width="640" height="400">
+
         <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
         <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions"
           srclang="en-us">
-        <!--        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles"-->
-        <!--               srclang="en-us">-->
-        <!--
-                <source src="/static/videos/GoTrascript_captions_samples.mp4" type="video/mp4">
-                <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default > -->
-
       </video>
     </div>
+    <form class="align-center new-video-btn-style" action="{{url_for('navigateToMain')}}" method="post">
+      <input type="submit" class="action-btn-style" value="Try with New Video" title="Try with new video">
+    </form>
 
-    <!--
-<video width="400" height="400" controls  crossorigin="anonymous" preload="metadata">
-   <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
-   <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="captions" srclang="en-us" default >
-   <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label="English" kind="subtitles" srclang="en-us" default >
-
-   <source src="/static/videos/GoTrascript_captions_samples.mp4" type="video/mp4">
-   <track src="/static/videos/captions-example.srt" label="English" kind="captions" srclang="en-us" default >
-</video>
--->
-    <br>
-    <br>
-    <br>
+    <!--- For Debugging --->
     <!-- <p>
 
       <li>{{ captionFile }}</li>
       <li>{{ video_name }}</li>
     </p> -->
 
-
-    <form class="align-center new-video-btn-style" action="{{url_for('navigateToMain')}}" method="post">
-      <input type="submit" class="action-btn-style" value="Try with New Video" title="Try with new video">
-    </form>
   </main>
 
 </body>

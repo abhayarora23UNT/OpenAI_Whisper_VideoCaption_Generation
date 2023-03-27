@@ -129,7 +129,6 @@
   top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
-  //font-size: 20px !important
 }
 
 .video-container {
@@ -141,12 +140,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 20px !important
+  max-width: 45% !important;
 }
-.new-video-btn-style{
+
+.new-video-btn-style {
   top: 80%;
   position: absolute;
-  left: 45%;
 }
 
 .container tabs,
@@ -246,22 +245,22 @@ body {
   font-size: 17px;
 }
 
-.button4 {
-    border-radius: 8px;
-    padding: 4px;
-    font-size: 1.2rem;
-    width:140px;
-    background:#006A31;
-    //font-weight:400;
-    color:white;
+.btnSubmit {
+  border-radius: 8px;
+  padding: 4px;
+  font-size: 1.2rem;
+  width: 140px;
+  background: #006A31;
+  color: white;
+  margin-top: 10%;
 }
 
-.button4:hover {
-    background:#72b844;
+.btnSubmit:hover {
+  background: #72b844;
 }
 
 
-.button4:disabled {
+.btnSubmit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -288,9 +287,6 @@ body {
 /* Style the tab content */
 .tabcontent {
   display: none;
-  /* <!--  padding: 6px 12px;-->
-<!--  border: 1px solid #ccc;-->
-<!--  border-top: none;--> */
 }
 
 /* Style the close button */
@@ -304,8 +300,14 @@ body {
   color: red;
 }
 
-.formInput{
-    font-size:1.2rem;
-    padding-left: 6px;
+.fileInput {
+  font-size: 1.2rem;
+  padding: 5px;
 }
 
+.align-vert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

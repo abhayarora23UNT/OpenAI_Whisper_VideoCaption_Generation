@@ -22,23 +22,29 @@ function loadTrack() {
  * Method to show loader
  */
 function showLoader() {
-    console.log("inside showLoader")
-    document.getElementById("loader").style.display = "block";
+    const loaderElementId="loader"
+    const displayBlock="block"
+    document.getElementById(loaderElementId).style.display = displayBlock;
 }
 
 /**
  * Method to hide loader
  */
 function hideLoader() {
-    console.log("hide showLoader")
-    document.getElementById("loader").style.display = "none";
+    const loaderElementId="loader"
+    const displayNone="none"
+    document.getElementById(loaderElementId).style.display = displayNone;
 }
 
 
+/**
+ * Method to show page transition
+ */
 function showPageTransition() {
-    showLoader()
-
+    const dismissLoader = appLoaderDismiss
+    showLoader();
     setTimeout(() => {
         hideLoader()
-    }, 3000);
+    }, dismissLoader);
 }
+

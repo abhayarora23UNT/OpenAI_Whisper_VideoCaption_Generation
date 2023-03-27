@@ -57,7 +57,7 @@ function handleUploadButtonState() {
         if (document.querySelector(custVideoInputClass).value === "") {
             formButton.disabled = true; // return disabled as true whenever the input field is empty
         } else {
-             setTimeout(() => {
+            setTimeout(() => {
                 checkVideoDuration(formInput, formButton);
             }, 1000);
 
@@ -75,45 +75,47 @@ function handleButtonActiveStates() {
     const buttons = document.querySelectorAll("button");
     const sections = document.querySelectorAll(".content");
 
+    const eventType = "click";
+    const activeClass = "active";
     buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener(eventType, () => {
             buttons.forEach((btn) => {
-                btn.classList.remove("active");
+                btn.classList.remove(activeClass);
             });
-            btn.classList.add("active");
+            btn.classList.add(activeClass);
             const id = btn.id;
             sections.forEach((section) => {
-                section.classList.remove("active");
+                section.classList.remove(activeClass);
             });
             const req = document.getElementsByClassName(`content${id}`);
-            req[0].classList.add("active");
+            req[0].classList.add(activeClass);
         })
     })
 }
 
 
-// TODO Mehghana to check //
-
-// Below code is not using //
-
-
- function checkVideoDuration(input, formButton) {
- if(input){
-   const timeLimit=30; // time in seconds
-  const file = input.files[0];
-  const video = document.createElement('video');
-  video.src = URL.createObjectURL(file);
-  video.onloadedmetadata = function() {
-    if (video.duration > timeLimit) {
-      alert(`Video duration should not be more than ${timeLimit} seconds!`);
-      input.value = "";
-      formButton.disabled= true;
-      URL.revokeObjectURL(video.src);
-    } else{
-       formButton.disabled = false; // enable the button once the input field has content
+/**
+ * Method to check video duration
+ * @param {*} input formInput
+ * @param {*} formButton formButton
+ */
+function checkVideoDuration(input, formButton) {
+    if (input) {
+        const timeLimit = videoDurationAllowed; // time in seconds
+        const file = input.files[0];
+        const video = document.createElement('video');
+        video.src = URL.createObjectURL(file);
+        video.onloadedmetadata = function () {
+            if (video.duration > timeLimit) {
+                alert(`Video duration should not be more than ${timeLimit} seconds!`);
+                input.value = "";
+                formButton.disabled = true;
+                URL.revokeObjectURL(video.src);
+            } else {
+                formButton.disabled = false; // enable the button once the input field has content
+            }
+        };
     }
-  };
-  }
 };
 
 
