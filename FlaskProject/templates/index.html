@@ -31,7 +31,8 @@
     <div class="sections">
       <div id="CustomVideo" class="content content1 active">
         <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-          <input type="file" class="form-input-video" id="videoInput" name="video" accept="video/mp4"><br><br>
+          <input type="file" class="form-input-video formInput" id="videoInput" name="video" accept="video/mp4"><br><br>
+          <br>
           <input type="submit" class="form-button-upload button4" id="submitVideoUpload" onclick="showPageTransition()"
             value="Upload" title="Upload Video">
         </form>
@@ -39,8 +40,8 @@
 
       <div id="Youtube" class="content content2">
         <form action="{{url_for('uploadYTube')}}" method="post">
-          <input type="text" name="url" id="urlUpload" placeholder="Enter youtube video url" style="width:400px"
-            class="form-input-youtube"><br><br>
+          <input type="text" name="url" id="urlUpload" placeholder="Enter youtube video url" style="width:500px"
+            class="form-input-youtube formInput"><br><br><br>
           <input type="submit" id="youTubeUpload" value="Upload" class="form-button-youtube button4" title="Upload Video">
         </form>
       </div>

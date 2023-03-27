@@ -7,7 +7,7 @@
 
 .headerBackground {
   background-color: #006A31;
-  font-size: 20px !important;
+  font-size: 30px !important;
   height: 100px !important;
 }
 
@@ -126,10 +126,10 @@
   border-radius: 0.5em;
   overflow: hidden;
   position: absolute;
-  top: 50%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 20px !important
+  //font-size: 20px !important
 }
 
 .video-container {
@@ -156,7 +156,7 @@
 
 .tabs {
   display: grid;
-  border: 3px solid black;
+  border: 2px solid black;
   background-color: #006A31;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -169,7 +169,7 @@
 
 .btn {
   padding: 0.75rem 1.25rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   cursor: pointer;
   border-right: 3px solid #202f55;
 }
@@ -184,13 +184,13 @@
 }
 
 .btn.active {
-  background-color: yellowgreen;
+  background-color: #72b844;
   text: white !important
 }
 
 .sections {
   background-color: white;
-  border: 4px solid black;
+  border: 2px solid black;
   text: black !important
 }
 
@@ -247,9 +247,23 @@ body {
 }
 
 .button4 {
-    border-radius: 18px;
+    border-radius: 8px;
     padding: 4px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    width:140px;
+    background:#006A31;
+    //font-weight:400;
+    color:white;
+}
+
+.button4:hover {
+    background:#72b844;
+}
+
+
+.button4:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .marginStyle {
@@ -289,3 +303,9 @@ body {
 .topright:hover {
   color: red;
 }
+
+.formInput{
+    font-size:1.2rem;
+    padding-left: 6px;
+}
+

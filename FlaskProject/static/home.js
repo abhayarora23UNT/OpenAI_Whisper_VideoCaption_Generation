@@ -57,7 +57,10 @@ function handleUploadButtonState() {
         if (document.querySelector(custVideoInputClass).value === "") {
             formButton.disabled = true; // return disabled as true whenever the input field is empty
         } else {
-            formButton.disabled = false; // enable the button once the input field has content
+             setTimeout(() => {
+                checkVideoDuration(formInput, formButton);
+            }, 1000);
+
         }
     });
 
@@ -93,29 +96,24 @@ function handleButtonActiveStates() {
 
 // Below code is not using //
 
-const checkFileInput = (x, y) => {
-    const fileInput = document.getElementById(x);
-    const submitButton = document.getElementById(y);
-    // if (fileInput.value) {
-    //     submitButton.disabled = false;
-    // } else {
-    //     submitButton.disabled = true;
-    // }
-    if (x == "videoInput") {
-        const video = document.createElement('video');
-        video.preload = 'metadata';
-        video.onloadedmetadata = function () {
-            window.URL.revokeObjectURL(video.src);
-            if (video.duration <= 30) {
-                submitButton.disabled = false;
-            } else {
-                alert('Video duration should not be more than 30 seconds!');
-                submitButton.disabled = true;
-                fileInput.value = null;
-            }
-        }
-        video.src = URL.createObjectURL(fileInput.files[0]);
+
+ function checkVideoDuration(input, formButton) {
+ if(input){
+   const timeLimit=30; // time in seconds
+  const file = input.files[0];
+  const video = document.createElement('video');
+  video.src = URL.createObjectURL(file);
+  video.onloadedmetadata = function() {
+    if (video.duration > timeLimit) {
+      alert(`Video duration should not be more than ${timeLimit} seconds!`);
+      input.value = "";
+      formButton.disabled= true;
+      URL.revokeObjectURL(video.src);
+    } else{
+       formButton.disabled = false; // enable the button once the input field has content
     }
+  };
+  }
 };
 
 
