@@ -2,3 +2,8 @@ moviepy==1.0.3
 pytube==12.1.0
 Flask==2.2.2
 git+https://github.com/openai/whisper.git 
+
+
+
+# Run below command in terminal to install required dependencies
+# pip install -r requirements.txt

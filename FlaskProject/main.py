@@ -1,14 +1,5 @@
-import os
 from app import app
-import urllib.request
 from flask import Flask, flash, request, redirect, url_for, render_template
-from werkzeug.utils import secure_filename
-import whisper
-
-import pytube as pt
-from datetime import timedelta
-import os
-import moviepy.editor as mpy
 
 from generatecaptions import GenerateCaptions
 from video2audio import VideoConverter

@@ -1,7 +1,4 @@
 import whisper
-from datetime import timedelta
-import os
-
 from utils import *
 
 
@@ -14,7 +11,7 @@ class GenerateCaptions:
 
     def loadWhisperModel(self):
         global model 
-        model = whisper.load_model("base")
+        model = whisper.load_model("base") # model can be changed to medium,large . Recompile Code #
 
     def generateCaptions(self,audioPath):
         endUrl=audioPath.split("/")[-1]
@@ -42,23 +39,5 @@ class GenerateCaptions:
         return audio+".vtt"
 
     
-    ##  *********** Method not using ********
-    # def generateSrtFile(self,segments,fileName):
-    #     for segment in segments:
-    #         startTime = str(0)+str(timedelta(seconds=int(segment['start'])))+',000'
-    #         endTime = str(0)+str(timedelta(seconds=int(segment['end'])))+',000'
-    #         text = segment['text']
-    #         segmentId = segment['id']+1
-    #         segment = f"{segmentId}\n{startTime} --> {endTime}\n{text[1:] if text[0] is ' ' else text}\n\n"
-
-    #         srtFilename = os.path.join("static/videos/", f""+fileName+".vtt")
-
-    #         with open(srtFilename, 'a', encoding='utf-8') as srtFile:
-    #             srtFile.write(segment)
-
-    #         print("debug: ",srtFilename)
-    #         return srtFilename
-        
-
  
 

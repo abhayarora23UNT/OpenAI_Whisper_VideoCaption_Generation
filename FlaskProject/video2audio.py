@@ -1,7 +1,6 @@
 import moviepy.editor as mpy
 
 import pytube as pt
-import os
 import urllib.parse
 from pytube import extract
 
