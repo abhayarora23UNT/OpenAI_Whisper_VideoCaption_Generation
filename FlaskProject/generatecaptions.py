@@ -18,9 +18,10 @@ class GenerateCaptions:
         captionFileName=endUrl.rsplit('.', 1)[0].lower()
         downloadPath="static/captions/"+captionFileName+".txt"
         if model :
+            # result = model.transcribe(audioPath, fp16=False)
             result = model.transcribe(audioPath, fp16=False, language='English')
             print(result["text"])
-            with open(downloadPath, "w+") as f:
+            with open(downloadPath, "w+",encoding="utf-8") as f:
                 f.write(result["text"])
 
             # captionFilePath=self.generateSrtFile(segments,captionFileName)
