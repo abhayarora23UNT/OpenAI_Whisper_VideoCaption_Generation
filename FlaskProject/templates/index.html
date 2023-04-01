@@ -1,12 +1,75 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>Upload Video</title>
+  <title>Upload Video</title>
+  <script src="{{url_for('static', filename='constant.js')}}"></script>
+  <script src="{{url_for('static', filename='load.js')}}"></script>
+  <script src="{{url_for('static', filename='home.js')}}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
-<body>
-    <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data">
-        <input type="file" name="video">
-        <input type="submit" value="Upload">
-    </form>
+
+<body onload="showPageTransition()">
+
+  <!--- Header -->
+  <header>
+    <h3 class="headerBackground text-white p-2">
+      <img class="logo-style" src="./static/styles/logo.png">
+      Video Caption Customization and Detection
+    </h3>
+  </header>
+
+
+  <!-- Main Container-->
+  <main class="container">
+    <div class="tabs text-white">
+      <button class="btn btn1 active text-white" id="1">Custom Video</button>
+      <button class="btn btn2 text-white" id="2">Youtube</button>
+    </div>
+
+    <div class="sections">
+      <div id="CustomVideo" class="content content1 active">
+        <form action="{{url_for('upload')}}" method="post" enctype="multipart/form-data" class="align-vert">
+          <input type="file" class="form-input-video fileInput" id="videoInput" name="video" accept="video/mp4">
+
+          <input type="submit" class="form-button-upload btnSubmit" id="submitVideoUpload"
+            onclick="showPageTransition()" value="Upload" title="Upload Video">
+        </form>
+      </div>
+
+      <div id="Youtube" class="content content2">
+        <form action="{{url_for('uploadYTube')}}" method="post" class="align-vert">
+          <input type="text" name="url" id="urlUpload" placeholder="Enter youtube video url" style="width:500px"
+            class="form-input-youtube fileInput">
+
+          <input type="submit" id="youTubeUpload" value="Upload" class="form-button-youtube btnSubmit"
+            title="Upload Video"  onclick="showPageTransition()">
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script>
+
 </body>
+
+<!--- Footer -->
+<footer id="footer">
+  <span class="footerStyle">
+    © 2023 All Rights Reserved: UNT, Software Testing Spring-23, Team 11
+  </span>
+</footer>
+
+<div id="loader">
+  <img class="style-loader" src="{{ url_for('static', filename='styles/loader.gif') }}">
+</div>
+
 </html>
