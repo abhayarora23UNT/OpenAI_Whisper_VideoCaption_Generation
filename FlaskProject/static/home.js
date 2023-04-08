@@ -3,6 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
     executeJsCode()
 });
 
+/**
+ * Method to receive event from python script
+ */
+function receiveDismissEvent(){
+    $.ajax({
+        url: '/send_event',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ 'event_name': 'dismissEvent', 'data': 'True' }),
+        success: function(response) {
+            hideLoader()
+            console.log(response.message); // log the response message to the console
+        }
+    });
+}
 
 /**
  * Method to execute JS code when DOM Content Loaded

@@ -1,11 +1,11 @@
 from app import app
-from flask import Flask, flash, request, redirect, url_for, render_template
+from flask import Flask, flash, request, jsonify, url_for, render_template
 
 from generatecaptions import GenerateCaptions
 from video2audio import VideoConverter
 
 from utils import *
-
+import requests
 
 @app.route('/')
 def upload_form():
@@ -46,6 +46,20 @@ def uploadYTube():
     return generateCaptions(videoPath,audioPath)
         
 
+@app.route('/send_event', methods=['POST'])
+def send_event():
+    event_data = request.get_json() # get the event data from the request
+    # do something with the event data
+    response_data = {'message': 'Event received','data':event_data}
+    print(response_data)
+    return jsonify(response_data)
+
+def sendDismissEvent():
+    event_data = {'event_name': 'dismissEvent', 'data': 'True'}
+    response = requests.post('http://localhost:5000/send_event', json=event_data)
+    print(response)
+    print(response.json()['message']) # print the response message
+
 def doProcessing(fileName):
     converter=VideoConverter()
     print("debug: File name is ",fileName)
@@ -58,6 +72,7 @@ def generateCaptions(videoFileName,audioPath):
     captionGen=GenerateCaptions()
     captionFilePath=captionGen.generateCaptions(audioPath)
     print("debug: caption path  is ",captionFilePath)
+    sendDismissEvent()
     return render_template('preview.html', video_name=videoFileName,captionFile=captionFilePath)
 
 @app.route('/index', methods=["POST"])
