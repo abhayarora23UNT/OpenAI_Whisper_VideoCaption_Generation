@@ -6,6 +6,7 @@ from video2audio import VideoConverter
 
 from utils import *
 import requests
+import iso639
 
 @app.route('/')
 def upload_form():
@@ -70,10 +71,15 @@ def doProcessing(fileName):
 
 def generateCaptions(videoFileName,audioPath):
     captionGen=GenerateCaptions()
-    captionFilePath=captionGen.generateCaptions(audioPath)
+    resultObj=captionGen.generateCaptions(audioPath)
+    captionFilePath= resultObj[0]
+    detectedLang= resultObj[1]
+    langName = iso639.to_name(detectedLang)
     print("debug: caption path  is ",captionFilePath)
+    print("debug: caption lang code  is ", detectedLang)
+    print("debug: caption lang name  is ", langName)
     sendDismissEvent()
-    return render_template('preview.html', video_name=videoFileName,captionFile=captionFilePath)
+    return render_template('preview.html', video_name=videoFileName,captionFile=captionFilePath, trackLang= detectedLang, trackLangLabel= langName )
 
 @app.route('/index', methods=["POST"])
 def navigateToMain():
