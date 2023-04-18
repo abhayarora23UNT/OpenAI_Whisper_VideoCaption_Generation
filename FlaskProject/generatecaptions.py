@@ -1,6 +1,7 @@
 import whisper
 from utils import *
 from langdetect import detect, LangDetectException
+import time
 
 model=''
 
@@ -12,12 +13,16 @@ class GenerateCaptions:
     def loadWhisperModel(self):
         global model 
         model = whisper.load_model("base") # model can be changed to medium,large . Recompile Code #
+        
+        # offline load model #
+        # model = whisper.load_model("C:/Users/Anubhav Arora/.cache/whisper/base.pt") # model can be changed to medium,large . Recompile Code #
 
     def generateCaptions(self,audioPath):
         resultObj ={}
         endUrl=audioPath.split("/")[-1]
         captionFileName=endUrl.rsplit('.', 1)[0].lower()
         downloadPath="static/captions/"+captionFileName+".txt"
+        start_time = time.perf_counter()
         if model :
             result = model.transcribe(audioPath, fp16=False)
             # result = model.transcribe(audioPath, fp16=False, language='English')
@@ -39,6 +44,11 @@ class GenerateCaptions:
             self.generateSrtOutput(result,captionFileName)
             resultObj[0] = captionFilePath
             resultObj[1]= detectedLang
+            # For Debugging Purpose #
+            end_time = time.perf_counter()
+            elapsed_time = end_time - start_time
+            print(f"Elapsed time: {elapsed_time:.6f} seconds")
+            #--------------------End-------------------#
             return resultObj
 
     def generateSrtOutput(self,result,audio):

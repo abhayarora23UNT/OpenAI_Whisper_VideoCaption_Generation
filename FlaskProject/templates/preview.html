@@ -39,8 +39,8 @@
         preload="auto" width="640" height="400">
 
         <source src="{{url_for('static', filename='videos/' + video_name)}}" type="video/mp4">
-        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label={{trackLangLabel}} kind="captions"
-          srclang={{trackLang}}>
+        <track #track src="{{url_for('static', filename='videos/' +captionFile)}}" label={{trackLangLabel}}
+          kind="captions" srclang={{trackLang}}>
       </video>
     </div>
     <form class="align-center new-video-btn-style" action="{{url_for('navigateToMain')}}" method="post">
