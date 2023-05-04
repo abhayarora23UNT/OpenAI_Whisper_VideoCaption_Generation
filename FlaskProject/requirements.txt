@@ -2,6 +2,9 @@
 
 # https://towardsdatascience.com/pip-install-specific-version-how-to-install-a-specific-python-package-version-with-pip-1f97e1002f31 #
 
+#For streaming key error, edit innertube.py  file,in pytube installation folder.
+#Change client 'ANDROID' to 'WEB' in class innertube
+
 moviepy==1.0.3
 
 # https://github.com/pytube/pytube/issues/1542
