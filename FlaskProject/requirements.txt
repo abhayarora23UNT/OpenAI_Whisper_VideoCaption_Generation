@@ -1,6 +1,10 @@
 #Following is for windows, for Mac please run all the commands individually
 
+# https://towardsdatascience.com/pip-install-specific-version-how-to-install-a-specific-python-package-version-with-pip-1f97e1002f31 #
+
 moviepy==1.0.3
+
+# https://github.com/pytube/pytube/issues/1542
 pytube==12.1.0
 Flask==2.2.2
 git+https://github.com/openai/whisper.git
