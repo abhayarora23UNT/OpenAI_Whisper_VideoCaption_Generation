@@ -1,14 +1,22 @@
 
-Video Caption and Customization
+### Video Caption and Customization
 
-Application was developed as a pert of Research Project.
 
 Developed flask web application in python using Whisper Open AI to customize live video captions, which in return addressed the web accessibility issues of blind/deaf people.
 
 
+#### Prerequisites
+* [Python](https://www.python.org/)
+* [VsCode](https://code.visualstudio.com/)
+
+#### Built With
+
+* [Flask](https://flask.palletsprojects.com/en/2.3.x/)
+* HTML, CSS, Javascript , Bootstrap
+* Libraries: [Whisper](https://github.com/openai/whisper) , [MoviePy](https://pypi.org/project/moviepy/) , [PyTube](https://pytube.io/en/latest/)
 
 
 
-<br><br>
+#### Privacy Policy
 
-[Privacy Policy](https://github.com/abhayarora23UNT/UntSwTesting_VideoCaption_Project2023/blob/main/Privacy%20Policy.md)
+See the [Privacy Policy](Privacy%20Policy.md).md file for details
